@@ -1,0 +1,81 @@
+<?php
+
+/* u headeru podaci o licenci modal */
+// kljuc: 'Header/podaciOLicenciModal'
+return [
+    'Podaci o licenci' => 'Podaci o licenci',
+    'Ime i prezime' => 'Ime i prezime',
+
+    'NivoPristupaKorisnik' => 'Nivo pristupa: <b>Korisnik</b>',
+    /* Sakriveni info box */
+    'NivoPristupaKorisnikInfo' => '<strong>Korisnik:</strong> Korisnik sa ovim nivoom pristupa ima privilegije koje su mu dodeljene od strane administratora, a podrazumevano vidi samo poslovne informacije u Kancelarku.',
+
+    'NivoPristupaAdmin' => 'Nivo pristupa: <b>Administrator</b>',
+    /* Sakriveni info box */
+    'NivoPristupaAdminInfo' => '<strong>Administrator:</strong> Korisnik sa ovim nivoom pristupa ima privilegiju da administrira podešavanja u Kancelarku. Na ovaj nivo utiču i postavljene privilegije za korisnički nalog.',
+
+    'NivoPristupaSadmin' => 'Nivo pristupa: <b>Super Administrator</b>',
+    /* Sakriveni info box */
+    'NivoPristupaSadminInfo' => '<strong>Super administrator:</strong> Ima sve privilegije i mogućnosti u Kancelarku.',
+
+    'ID Licence' => 'ID Licence',
+    'Aplikacioni kod' => 'Aplikacioni kod',
+    'Nosilac licence' => 'Nosilac licence',
+    /* Moduli */
+    'Moduli' => 'Moduli',
+    'Principal' => 'Principal',
+    'e-Delovodnik' => 'e-Delovodnik',
+    'e-Arhiviranje' => 'e-Arhiviranje',
+    'stanjeVremenskihZigova' => 'Stanje vremenskih žigova',
+    'ukupnoKredita' => 'Ukupno kredita',
+    'istrosenoKredita' => 'Istrošeno kredita',
+    'preostaloKredita' => 'Preostalo kredita',
+    'e-Fakture' => 'e-Fakture',
+    'Modul aktivan do' => 'Aktivan do',
+    'Modul neaktivan' => 'Neaktivan',
+    'Istekao' => 'Istekao',
+    'Iskorišćenost' => 'Iskorišćenost',
+    'Nema potrosnje' => 'Trenutno nema zabeležene potrošnje, pokušajte sutra.',
+    '10GB' => '10 GB',
+    'IskorišćenostInfo' => 'Info! Iskorišćenost prostora se računa na svaka dva sata',
+    /* Korisnik privilegije */
+    'KorisnikPrivilegije' => 'Korisnik ima sledeće privilegije',
+    'PregledOstalih' => 'Pregled ostalih informacija kod zaposlenih (osim poslovnih koje vide svi)',
+    'DodajeMenjaZaposlene' => 'Dodaje / menja zaposlene',
+    'DodajeMenjaKontakte' => 'Dodaje / menja kontakte',
+    'Finansije' => 'Finansije (pravi i briše fakture i evidentira uplate po fakturi za sve predmete)',
+    'VidiFakture' => 'Vidi fakture i uplate',
+    'DodajeMenjaOrgane' => 'Dodaje / menja nadležne organe',
+    'DodajeMenjaLokacije' => 'Dodaje / menja lokacije',
+    'DodajeMenjaResurse' => 'Dodaje / menja resurse',
+    'PregledStatistike' => 'Pregled statistike zaposlenih',
+    'DodajeKnjiguDokumenata' => 'Dodaje novu knjigu dokumenata',
+    'AdministracijaFoldera' => 'Administracija foldera u zajedničkim folderima',
+    'DodavanjeDokumenata' => 'Dodavanje dokumenata u zajedničkim folderima',
+    'FaktureŠalje' => 'Fakture: Može da šalje',
+    'FakturePrima' => 'Fakture: Vidi primljene',
+    'AllAdminList' => 'Lista svih super administratora i administratora',
+    'SadminLoop' => '<strong>Super Administrator</strong>',
+    'AdminLoop' => '<strong>Administrator</strong>',
+    'Zatvori' => 'Zatvori',
+    'e-Poštar' => 'e-Poštar',
+    'e-Fiskalna kasa' => 'e-Fiskalna kasa',
+    'Kadrovik' => 'Kadrovik',
+    'Kadrovik lite' => 'Kadrovik lite',
+    'e-Magacin' => 'e-Magacin',
+    'e-Procedure' => 'e-Procedure',
+    'OCR' => 'OCR',
+    'Resursi' => 'Resursi',
+    'e-Obrada izvoda' => 'e-Obrada izvoda',
+    'CompanyWall' => 'Preuzimanje podataka CompanyWall',
+    'tekstovi' => 'Stručni tekstovi',
+    'browserExtension' => 'Browser ekstenzija',
+    'e-Tiketi' => 'e-Tiketi',
+    'Troškovnik' => 'Troškovnik',
+    'MailJohny' => 'MailJohny',
+    'e-Obrasci' => 'e-Obrasci',
+    'Događaji' => 'Događaji',
+    'Email zavođenje' => 'Email zavođenje',
+    'Povezivanje propisa---Pravna baza',
+    'e-Otpremnice' => 'e-Otpremnice',
+];

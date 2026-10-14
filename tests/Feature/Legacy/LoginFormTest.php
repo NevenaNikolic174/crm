@@ -119,7 +119,7 @@ test('izabrana licenca iz drugog koraka završava prijavu bez ponovne lozinke', 
 
     $this->withSession(['OldRequest' => ['username' => 'neko@firma.rs', 'remember' => true, 'licenses' => [1, 2]]])
         ->post(route('login.store'), ['chooseLicense' => 'POST', 'licenseCompany' => 2])
-        ->assertRedirect('/')
+        ->assertRedirect('/test')
         ->assertSessionMissing('OldRequest')
         ->assertCookie('lID', 'neko@firma.rs')
         ->assertCookie('l_id', '2');
@@ -172,7 +172,7 @@ test('uspešna prijava vodi na početnu i pamti korisnika uz "zapamti me"', func
     });
 
     $this->post(route('login.store'), ['username' => 'neko@firma.rs', 'password' => 'tajna', 'remember' => 'on'])
-        ->assertRedirect('/')
+        ->assertRedirect('/test')
         ->assertCookie('lID', 'neko@firma.rs')
         ->assertCookie('l_id', '7');
 
@@ -181,13 +181,13 @@ test('uspešna prijava vodi na početnu i pamti korisnika uz "zapamti me"', func
 
 test('odjava posle prijave kroz formu vraća na formu', function () {
     $this->withSession(['legacyLoginVia' => LoginService::VIA_FORM])
-        ->get(route('legacy.logout'))
+        ->get(route('logout'))
         ->assertRedirect(route('login'))
         ->assertSessionHas('success');
 });
 
 test('odjava posle prijave sa Kancelarka ide na odjavu Kancelarka', function () {
     $this->withSession(['legacyLoginVia' => LoginService::VIA_KANCELARKO])
-        ->get(route('legacy.logout'))
+        ->get(route('logout'))
         ->assertRedirect('https://kancelarko.test/logout');
 });

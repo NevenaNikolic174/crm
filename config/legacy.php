@@ -17,6 +17,19 @@ return [
 
     'login_form' => (bool) env('LEGACY_LOGIN_FORM', true),
 
+    'home' => '/test',
+
+    'procedure_url' => env('PROCEDURE_URL'),
+    'dogadjaji_url' => env('DOGADJAJI_URL'),
+    'elms_url' => env('ELMS_URL'),
+    'ticketing_url' => env('TICKETING_URL'),
+    'troskovnik_url' => env('TROSKOVNIK_URL'),
+    'obrasci_url' => env('OBRASCI_URL'),
+    'otpremnice_url' => env('OTPREMNICE_URL'),
+    'kamate_login_srv' => env('KAMATE_LOGIN_SRV', 'https://kamate.kalkulatori.rs/klogin'),
+    'zarade_login_srv' => env('ZARADE_LOGIN_SRV', 'https://zarade.kalkulatori.rs/klogin'),
+    'sudske_takse_srv' => env('SUDSKE_TAKSE_SRV', 'https://sudsketakse.kalkulatori.rs/klogin'),
+
     'app_server_production' => env('APP_DEFAULT_MODUL', 'Delovodnik'),
 
     'login' => [

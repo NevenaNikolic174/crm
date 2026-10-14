@@ -135,6 +135,22 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        'errorLogin' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/legacy/error_login.log'),
+            'level' => 'debug',
+            'max_files' => 21,
+            'replace_placeholders' => true,
+        ],
+
+        'create_mysql_account' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/legacy/create_mysql_account.log'),
+            'level' => 'info',
+            'max_files' => 21,
+            'replace_placeholders' => true,
+        ],
+
     ],
 
 ];

@@ -42,6 +42,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'legacy' => [
+            'driver' => 'session',
+            'provider' => 'legacy_users',
+        ],
     ],
 
     /*
@@ -67,10 +72,13 @@ return [
             'model' => env('AUTH_MODEL', User::class),
         ],
 
-        // 'users' => [
+        'legacy_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Legacy\Models\User::class,
+        ],
+
         //     'driver' => 'database',
         //     'table' => 'users',
-        // ],
     ],
 
     /*

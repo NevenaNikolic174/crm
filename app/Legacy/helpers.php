@@ -3,6 +3,7 @@
 use App\Legacy\License\LicenseConnection;
 use App\Legacy\Models\License;
 use Illuminate\Database\ConnectionInterface;
+use Illuminate\Support\Facades\DB;
 
 if (! function_exists('checkmodule')) {
     /**
@@ -105,5 +106,45 @@ if (! function_exists('legacy_db')) {
     function legacy_db(): ConnectionInterface
     {
         return LicenseConnection::db();
+    }
+}
+
+if (! function_exists('getUsage')) {
+    function getUsage(): mixed
+    {
+        $storage = DB::connection('office_master')->table('parquet_storage_usage')
+            ->where('licencaId', session('licenseid'))
+            ->orderBy('ID', 'desc')
+            ->first();
+
+        return $storage->storage_usage ?? 0;
+    }
+}
+
+if (! function_exists('formatDiskSize')) {
+    function formatDiskSize(mixed $bytes): string|int
+    {
+        $kb = 1000;
+        $mb = $kb * 1000;
+        $gb = $mb * 1000;
+        $tb = $gb * 1000;
+
+        if (($bytes >= 0) && ($bytes < $kb)) {
+            if ($bytes == 0) {
+                return 0;
+            }
+
+            return $bytes.' B';
+        } elseif (($bytes >= $kb) && ($bytes < $mb)) {
+            return number_format(($bytes / $kb), 2).' KB';
+        } elseif (($bytes >= $mb) && ($bytes < $gb)) {
+            return number_format(($bytes / $mb), 2).' MB';
+        } elseif (($bytes >= $gb) && ($bytes < $tb)) {
+            return number_format(($bytes / $gb), 2).' GB';
+        } elseif ($bytes >= $tb) {
+            return number_format(($bytes / $tb), 2).' TB';
+        }
+
+        return $bytes.' B';
     }
 }

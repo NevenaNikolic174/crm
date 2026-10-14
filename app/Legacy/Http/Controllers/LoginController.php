@@ -13,6 +13,7 @@ use App\Legacy\License\OfficeMasterRepository;
 use App\Legacy\Services\LoginService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
@@ -83,7 +84,7 @@ final class LoginController extends Controller
         }
 
         if (LegacyAuth::check()) {
-            return redirect('/');
+            return redirect(self::home());
         }
 
         return response()->view('legacy.login');
@@ -166,7 +167,7 @@ final class LoginController extends Controller
             Cookie::queue(self::COOKIE_LICENSE, (string) $licenseId, $minutes);
         }
 
-        return redirect()->intended('/');
+        return redirect()->intended(self::home());
     }
 
     public function logout(Request $request): RedirectResponse
@@ -183,6 +184,7 @@ final class LoginController extends Controller
         }
 
         LegacyAuth::guard()->logout();
+        Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
@@ -201,7 +203,7 @@ final class LoginController extends Controller
         $route = is_string($route) ? trim($route) : '';
 
         if ($route === '' || str_contains($route, '://') || str_starts_with($route, '//')) {
-            return '/';
+            return self::home();
         }
 
         return '/'.ltrim($route, '/');
@@ -283,6 +285,11 @@ final class LoginController extends Controller
     private function decaySeconds(): int
     {
         return (int) config('legacy.login.decay_minutes', 1440) * 60;
+    }
+
+    public static function home(): string
+    {
+        return (string) config('legacy.home', '/');
     }
 
     private function kancelarkoUrl(string $path = ''): string

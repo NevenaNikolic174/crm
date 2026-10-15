@@ -15,7 +15,7 @@ final class OfficeMasterRepository
     }
 
     /**
-     * @return array<int, object>
+     * @return array<int, stdClass>
      */
     public function getUserLicenses(string $username, ?int $licenseId = null): array
     {

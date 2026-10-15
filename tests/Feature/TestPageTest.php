@@ -14,6 +14,7 @@ test('test strana traži legacy prijavu', function () {
 
 test('test strana se renderuje u Kancelarko layoutu', function () {
     Config::set('legacy.kancelarko_url', 'https://kancelarko.test');
+    Config::set('legacy.module_label', 'CRM');
     Config::set('database.connections.office_master', ['driver' => 'sqlite', 'database' => ':memory:', 'prefix' => '']);
     Schema::connection('office_master')->create('parquet_storage_usage', function (Blueprint $table) {
         $table->increments('ID');
@@ -33,12 +34,28 @@ test('test strana se renderuje u Kancelarko layoutu', function () {
         'devModules' => true,
     ]);
 
-    $html = view('pages.test')->render();
+    $html = view('pages.test', [
+        'tables' => [
+            ['id' => 'otpremnice', 'title' => 'Otpremnice', 'columns' => ['despatchAdviceNumber' => 'Broj otpremnice', 'status' => 'Status'], 'rows' => [['despatchAdviceNumber' => 'OTP-1', 'status' => 'SENT']], 'order' => [[0, 'desc']]],
+            ['id' => 'subjekti', 'title' => 'Subjekti', 'columns' => ['id' => 'id'], 'rows' => [], 'order' => [[0, 'desc']]],
+        ],
+    ])->render();
 
     expect($html)
         ->toContain('id="m_header"')
         ->toContain('id="m_aside_left"')
-        ->toContain('Test strana')
+        ->toContain('Adresar')
+        ->toContain('https://kancelarko.test/contacts?module_from_url=CRM')
+        ->toContain('Interna organizacija')
+        ->toContain('https://kancelarko.test/listwp?module_from_url=CRM')
+        ->toContain('Kontakt - Feedback')
+        ->toContain('legacy/assets/images/Viber-zajednica-reklama-FB-2.jpg')
+        ->not->toContain('Test strana')
+        ->toContain('m-portlet')
+        ->toContain('SENT')
+        ->toContain('Broj otpremnice')
+        ->toContain('id="tabela-otpremnice"')
+        ->toContain('.DataTable(')
         ->toContain('Pera')
         ->toContain('/redirectModule/')
         ->toContain('legacy/assets/vendors/base/vendors.bundle.css')

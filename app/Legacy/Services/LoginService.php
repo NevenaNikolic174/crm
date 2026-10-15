@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use stdClass;
 use Throwable;
 
 class LoginService
@@ -29,7 +30,7 @@ class LoginService
     ) {}
 
     /**
-     * @return array<int, object>
+     * @return array<int, stdClass>
      */
     public function matchingLicenses(string $username, string $password, ?int $licenseId = null): array
     {
@@ -63,7 +64,7 @@ class LoginService
         return $matches;
     }
 
-    public function licenseForUser(string $username, int $licenseId): ?object
+    public function licenseForUser(string $username, int $licenseId): ?stdClass
     {
         return $this->officeMaster->getUserLicenses($username, $licenseId)[0] ?? null;
     }

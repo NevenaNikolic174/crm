@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
+use stdClass;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
@@ -129,7 +130,7 @@ final class LoginController extends Controller
                 $request->session()->put('OldRequest', [
                     'username' => $username,
                     'remember' => $request->remember(),
-                    'licenses' => array_map(static fn (object $license): int => (int) $license->licenseID, $licenses),
+                    'licenses' => array_map(static fn (stdClass $license): int => (int) $license->licenseID, $licenses),
                 ]);
 
                 return response()->view('legacy.chooseLicense', ['licenseCompany' => $licenses]);
@@ -209,7 +210,7 @@ final class LoginController extends Controller
         return '/'.ltrim($route, '/');
     }
 
-    private function chosenLicense(LoginRequest $request): ?object
+    private function chosenLicense(LoginRequest $request): ?stdClass
     {
         $old = (array) $request->session()->get('OldRequest', []);
         $licenseId = $request->licenseId();

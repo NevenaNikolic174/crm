@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\HandleAppearance;
 use App\Http\Middleware\HandleInertiaRequests;
 use App\Legacy\Http\Middleware\AuthMiddleware as LegacyAuthMiddleware;
@@ -32,6 +33,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'checkUserLoggedIn' => CheckUserLoggedIn::class,
             'checkAppModule' => CheckModule::class,
+            'checkRole' => CheckRole::class,
             'checkuserrole' => CheckUserRole::class,
             'authmiddleware' => LegacyAuthMiddleware::class,
         ]);

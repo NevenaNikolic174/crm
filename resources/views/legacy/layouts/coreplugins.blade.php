@@ -484,6 +484,28 @@
 
 						<br>
 
+						CRM:
+						@if (checkmodule('MODULE_CRM') && (!empty(session('licenseModule')['CRM_DATES']['endDate'])))
+							@if (!isset(session('licenseModule')['CRM_DATES']['expirationDate']))
+								<span style="color: green; font-weight: bold;">
+									{{trans('legacy/Header/podaciOLicenciModal.Modul aktivan do')}} {{date('d.m.Y', strtotime(session('licenseModule')['CRM_DATES']['endDate']))}}
+								</span>
+							@else
+								<span style="color: green; font-weight: bold;">
+									{{trans('legacy/Header/podaciOLicenciModal.Modul aktivan do')}} {{date('d.m.Y', strtotime(session('licenseModule')['CRM_DATES']['expirationDate']))}}
+								</span>
+								<span style="color: red; font-weight: bold; padding-left: 5px;">
+									({{trans('legacy/Header/podaciOLicenciModal.Istekao')}} {{date('d.m.Y', strtotime(session('licenseModule')['CRM_DATES']['endDate']))}})
+								</span>
+							@endif
+						@else
+							<span style="color: red; font-weight: bold;">
+								{{trans('legacy/Header/podaciOLicenciModal.Modul neaktivan')}}
+							</span>
+						@endif
+
+						<br>
+
 						{{-- e-Fiskalna kasa --}}
 						e-Fiskalna kasa:
 

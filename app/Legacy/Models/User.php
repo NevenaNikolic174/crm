@@ -17,6 +17,7 @@ use Illuminate\Notifications\Notifiable;
  * @property int|null $eksterni gost nalog
  * @property int|null $lightPrincipal
  * @property int|null $accept_conditions
+ * @property int|null $crm_manager
  * @property string|null $remember_token
  * @property-read Employee|null $employee
  */
@@ -80,6 +81,7 @@ class User extends Authenticatable
         'eArchive',
         'saDone',
         'obradaIzvoda',
+        'crm_manager',
     ];
 
     /**
@@ -111,5 +113,10 @@ class User extends Authenticatable
     public function isGuest(): bool
     {
         return (int) ($this->eksterni ?? 0) === 1;
+    }
+
+    public function isCrmManager(): bool
+    {
+        return $this->isSuperAdmin() || (int) ($this->crm_manager ?? 0) === 1;
     }
 }

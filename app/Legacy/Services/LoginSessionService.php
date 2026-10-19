@@ -48,6 +48,7 @@ final class LoginSessionService
         'procedureView' => 'procedureView',
         'lightPrincipal' => 'lightPrincipal',
         'eksterni' => 'eksterni',
+        'crm_manager' => 'crmManager',
     ];
 
     /**

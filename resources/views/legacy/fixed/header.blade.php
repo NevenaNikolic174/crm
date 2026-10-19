@@ -2511,6 +2511,29 @@
                                             </li>
                                         @endif
 
+                                        @if (checkmodule('MODULE_CRM')
+                                            && (!empty(session('licenseModule')['S_DATES']['endDate']) || !empty(session('licenseModule')['CRM_DATES']['endDate'])) && empty(session("gost")))
+
+                                            <li class="m-menu__item  m-menu__item--submenu"
+                                                m-menu-submenu-toggle="hover" m-menu-link-redirect="1"
+                                                aria-haspopup="true">
+                                                <a href="/redirectModule/{{App\Legacy\Module\AppModuleHasher::getRedirectHash(['route' => '/', 'module_url' => config('legacy.module_url')])}}"
+                                                   class="m-menu__link ">
+
+                                                    <i class="m-menu__link-icon flaticon-users"></i>
+                                                    <span class="m-menu__link-title">
+												<span class="m-menu__link-wrap">
+													<span class="m-menu__link-text">
+														CRM
+
+													</span>
+
+												</span>
+											</span>
+                                                </a>
+                                            </li>
+                                        @endif
+
 
 
                                         {{-- neaktivni moduli. Pravi se novi <li> zbog razlicitog resporeda kada moduli nisu aktivni --}}
@@ -2853,6 +2876,27 @@
 															<span style="color: #bfc1c7 !important; "
                                                                   title="{{trans('legacy/Header/disabledModules.Nemate pristup ovom modulu')}}">
 																{{trans('legacy/Header/showModuleName.e-Otpremnice')}}
+															</span>
+														</span>
+													</span>
+												</span>
+                                                </a>
+                                            </li>
+                                        @endif
+
+                                        @if (!checkmodule('MODULE_CRM'))
+                                            <li class="m-menu__item  m-menu__item--submenu"
+                                                m-menu-submenu-toggle="hover" m-menu-link-redirect="1"
+                                                aria-haspopup="true">
+                                                <a href="{{ route('modulesInfo', ['moduleId' => 'crm']) }}"
+                                                   class="m-menu__link">
+                                                    <i class="m-menu__link-icon flaticon-users"></i>
+                                                    <span class="m-menu__link-title">
+													<span class="m-menu__link-wrap">
+														<span class="m-menu__link-text">
+															<span style="color: #bfc1c7 !important; "
+                                                                  title="{{trans('legacy/Header/disabledModules.Nemate pristup ovom modulu')}}">
+																CRM
 															</span>
 														</span>
 													</span>

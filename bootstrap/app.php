@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Middleware\CheckRole;
-use App\Http\Middleware\HandleAppearance;
-use App\Http\Middleware\HandleInertiaRequests;
 use App\Legacy\Http\Middleware\AuthMiddleware as LegacyAuthMiddleware;
 use App\Legacy\Http\Middleware\CheckDataSession;
 use App\Legacy\Http\Middleware\CheckModule;
@@ -21,12 +19,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->encryptCookies(except: ['appearance', 'sidebar_state']);
-
         $middleware->web(append: [
             CheckDataSession::class,
-            HandleAppearance::class,
-            HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,
         ]);
 

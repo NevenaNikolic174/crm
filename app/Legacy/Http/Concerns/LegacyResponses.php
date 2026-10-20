@@ -2,7 +2,6 @@
 
 namespace App\Legacy\Http\Concerns;
 
-use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
 
 trait LegacyResponses
@@ -17,10 +16,6 @@ trait LegacyResponses
 
     protected function externalRedirect(string $url): Response
     {
-        if (class_exists(Inertia::class)) {
-            return Inertia::location($url);
-        }
-
         return redirect($url);
     }
 }
